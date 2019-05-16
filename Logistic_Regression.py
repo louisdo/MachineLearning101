@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+from sklearn.metrics import accuracy_score
 from Regression import BaseRegression
 
 class MyLogisticRegression(BaseRegression):
@@ -68,7 +69,15 @@ class MyLogisticRegression(BaseRegression):
         self.theta=np.zeros((self.X.shape[1],1))
         if X.shape[0]>10000: return self._sto_get_params()
         return self._get_params()
+    
+    def predict(self,X_test):
+        one = np.ones((X_test.shape[0], 1))
+        X_test = np.concatenate((one, X_test), axis=1)
+        return np.apply_along_axis(np.round,0,self._hypothesis(X_test))
 
+    def score(self,X_test,y_test):
+        y_pred=self.predict(X_test)
+        return accuracy_score(y_test,y_pred)
 
 
 if __name__=="__main__":

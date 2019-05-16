@@ -79,8 +79,8 @@ class MyLinearRegression(BaseRegression):
 
 
 if __name__=="__main__":
-    X = np.random.rand(20000,1)
-    y = 4 + 3 * X + .5*np.random.randn(20000, 1)
+    X = np.random.rand(1000,1)
+    y = 4 + 3 * X + .5*np.random.randn(1000, 1)
 
     plt.plot(X,y,'ro')
     test=MyLinearRegression(0.1,100,0.1)
